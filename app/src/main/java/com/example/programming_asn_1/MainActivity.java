@@ -12,7 +12,7 @@ public class MainActivity extends AppCompatActivity {
     AppCompatButton count1;
     AppCompatButton count2;
     AppCompatButton count3;
-    AppCompatButton showCount;
+    AppCompatButton showCountBut;
     protected SharedPreferenceHelper spHelper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
         count3.setText(spHelper.getCounter3Name());
 
         settingsBut = (AppCompatButton) findViewById(R.id.settingsButton);
+        showCountBut = (AppCompatButton) findViewById(R.id.showCountsButton);
         settingsBut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -36,6 +37,13 @@ public class MainActivity extends AppCompatActivity {
                 //startActivity(new Intent(MainActivity.this, SettingsActivity.class));
             }
         });
-
+        showCountBut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this,CountsActivity.class);
+                startActivity(intent);
+                //startActivity(new Intent(MainActivity.this, SettingsActivity.class));
+            }
+        });
         }
 }
