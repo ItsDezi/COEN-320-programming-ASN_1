@@ -18,27 +18,44 @@ import android.widget.EditText;
 public class SettingsActivity extends AppCompatActivity {
 boolean editActive = false;
 EditText counter1Name, counter2Name, counter3Name;
-String counter1NameStr;
-SharedPreferences sp;
+String counter1NameStr, counter2NameStr, counter3NameStr;
+//SharedPreferences sp;
+    protected SharedPreferenceHelper spHelper;
 AppCompatButton saveButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
         counter1Name = findViewById(R.id.counter1);
+        counter2Name = findViewById(R.id.counter2);
+        counter3Name = findViewById(R.id.counter3);
+
         //counter2Name = findViewById(R.id.counter2);
         //counter3Name = findViewById(R.id.counter3);
         saveButton = (AppCompatButton) findViewById(R.id.saveSettings);
-        sp = getSharedPreferences("sharedPreference", Context.MODE_PRIVATE);
+        //sp = getSharedPreferences("sharedPreference", Context.MODE_PRIVATE);
+        spHelper = new SharedPreferenceHelper(SettingsActivity.this);
+        counter1Name.setText(spHelper.getCounter1Name());
+        counter2Name.setText(spHelper.getCounter2Name());
+        counter3Name.setText(spHelper.getCounter3Name());
 
-        counter1Name.setText(sp.getString("counter1Name", "Not Found"));
+        counter1Name.setEnabled(editActive);
+        counter2Name.setEnabled(editActive);
+        counter3Name.setEnabled(editActive);
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 counter1NameStr = counter1Name.getText().toString();
-                SharedPreferences.Editor editor = sp.edit();
+                counter2NameStr = counter2Name.getText().toString();
+                counter3NameStr = counter3Name.getText().toString();
+
+                spHelper.saveCounter1Name(counter1NameStr);
+                spHelper.saveCounter2Name(counter2NameStr);
+                spHelper.saveCounter3Name(counter3NameStr);
+
+                /*SharedPreferences.Editor editor = sp.edit();
                 editor.putString("counter1Name", counter1NameStr);
-                editor.commit();
+                editor.commit();*/
             }
         });
 
@@ -61,11 +78,17 @@ AppCompatButton saveButton;
         return true;
     }
 
+
+
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(item.getItemId() == R.id.editOption)
         {
             editActive = !editActive;
+            counter1Name.setEnabled(editActive);
+            counter2Name.setEnabled(editActive);
+            counter3Name.setEnabled(editActive);
+
         }
         return super.onOptionsItemSelected(item);
     }
