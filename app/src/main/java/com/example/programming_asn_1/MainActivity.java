@@ -9,15 +9,24 @@ import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
     AppCompatButton settingsBut;
-    AppCompatButton eventA;
-    AppCompatButton eventB;
-    AppCompatButton eventC;
+    AppCompatButton count1;
+    AppCompatButton count2;
+    AppCompatButton count3;
     AppCompatButton showCount;
-
+    protected SharedPreferenceHelper spHelper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        spHelper = new SharedPreferenceHelper(MainActivity.this);
+        count1 = findViewById(R.id.event1Button);
+        count2 = findViewById(R.id.event2Button);
+        count3 = findViewById(R.id.event3Button);
+
+        count1.setText(spHelper.getCounter1Name());
+        count2.setText(spHelper.getCounter2Name());
+        count3.setText(spHelper.getCounter3Name());
+
         settingsBut = (AppCompatButton) findViewById(R.id.settingsButton);
         settingsBut.setOnClickListener(new View.OnClickListener() {
             @Override

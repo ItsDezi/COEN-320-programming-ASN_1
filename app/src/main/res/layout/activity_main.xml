@@ -32,7 +32,7 @@
             android:text="Event A"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:id="@+id/eventAButton"
+            android:id="@+id/event1Button"
             />
         <androidx.appcompat.widget.AppCompatButton
             android:layout_column="0"
@@ -41,7 +41,7 @@
             android:text="Event B"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:id="@+id/eventBButton"
+            android:id="@+id/event2Button"
             />
         <androidx.appcompat.widget.AppCompatButton
             android:layout_column="0"
@@ -50,7 +50,7 @@
             android:text="Event C"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:id="@+id/eventCButton"
+            android:id="@+id/event3Button"
             />
         <TextView
             android:layout_marginTop="75dp"
