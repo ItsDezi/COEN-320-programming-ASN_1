@@ -36,6 +36,24 @@ public class SharedPreferenceHelper {
         editor.putInt("maxCountVal",num );
         editor.commit();
     }
+    public void saveCount1(int num)
+    {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putInt("count1Val",num );
+        editor.commit();
+    }
+    public void saveCount2(int num)
+    {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putInt("count2Val",num );
+        editor.commit();
+    }
+    public void saveCount3(int num)
+    {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putInt("count3Val",num );
+        editor.commit();
+    }
     public String getCounter1Name()
     {
         return sharedPreferences.getString("counter1Name", null);
@@ -52,4 +70,22 @@ public class SharedPreferenceHelper {
     {
         return sharedPreferences.getInt("maxCountVal", 0);
     }
+    public int getCount1()
+    {
+        return sharedPreferences.getInt("count1Val", 0);
+    }
+    public int getCount2()
+    {
+        return sharedPreferences.getInt("count2Val", 0);
+    }
+    public int getCount3()
+    {
+        return sharedPreferences.getInt("count3Val", 0);
+    }
+    public int getTotalCount()
+    {
+        int tmp = getCount1() + getCount2() + getCount3();
+        return tmp;
+    }
+
 }

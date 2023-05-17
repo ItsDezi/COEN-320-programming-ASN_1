@@ -15,18 +15,30 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 public class CountsActivity extends AppCompatActivity {
 
+    boolean eventNameEnabled = true;
+    TextView tv1, tv2, tv3, totalEvents;
     protected SharedPreferenceHelper spHelper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_counts);
 
-
+        //linking XML to Java objects
+        tv1 = findViewById(R.id.textView1);
+        tv2 = findViewById(R.id.textView2);
+        tv3 = findViewById(R.id.textView3);
+        totalEvents = findViewById(R.id.totalEvents);
         spHelper = new SharedPreferenceHelper(CountsActivity.this);
 
+        //retrieving saved data
+        totalEvents.setText("Total Events: " + spHelper.getTotalCount());
+        tv1.setText(spHelper.getCounter1Name() + ": " + spHelper.getCount1());
+        tv2.setText(spHelper.getCounter2Name() + ": " + spHelper.getCount2());
+        tv3.setText(spHelper.getCounter3Name() + ": " + spHelper.getCount3());
 
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -53,7 +65,19 @@ public class CountsActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(item.getItemId() == R.id.eventNamesOption)
         {
-
+            eventNameEnabled = !eventNameEnabled;
+            if(eventNameEnabled)
+            {
+                tv1.setText(spHelper.getCounter1Name() + ": " + spHelper.getCount1());
+                tv2.setText(spHelper.getCounter2Name() + ": " + spHelper.getCount2());
+                tv3.setText(spHelper.getCounter3Name() + ": " + spHelper.getCount3());
+            }
+            else
+            {
+                tv1.setText("Counter 1" + ": " + spHelper.getCount1());
+                tv2.setText("Counter 2" + ": " + spHelper.getCount2());
+                tv3.setText("Counter 3" + ": " + spHelper.getCount3());
+            }
         }
         return super.onOptionsItemSelected(item);
     }

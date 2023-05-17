@@ -45,5 +45,24 @@ public class MainActivity extends AppCompatActivity {
                 //startActivity(new Intent(MainActivity.this, SettingsActivity.class));
             }
         });
+        count1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                spHelper.saveCount1(spHelper.getCount1() + 1);
+            }
+        });
+        count2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                spHelper.saveCount2(spHelper.getCount2() + 1);
+            }
+        });
+        count3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                spHelper.saveCount3(spHelper.getCount3() + 1);
+            }
+        });
         }
 }
