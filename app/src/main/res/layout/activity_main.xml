@@ -61,6 +61,7 @@
             android:layout_height="wrap_content"
             android:text="Total Count: "
             android:layout_gravity="center_horizontal"
+            android:id="@+id/mainPageTotalCount"
  />
         <androidx.appcompat.widget.AppCompatButton
             android:layout_column="0"
