@@ -30,6 +30,12 @@ public class SharedPreferenceHelper {
         editor.putString("counter3Name",name );
         editor.commit();
     }
+    public void saveMaxCount(String num)
+    {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("maxCount",num );
+        editor.commit();
+    }
     public String getCounter1Name()
     {
         return sharedPreferences.getString("counter1Name", null);
@@ -41,5 +47,9 @@ public class SharedPreferenceHelper {
     public String getCounter3Name()
     {
         return sharedPreferences.getString("counter3Name", null);
+    }
+    public String getMaxCount()
+    {
+        return sharedPreferences.getString("maxCount", "Error");
     }
 }
