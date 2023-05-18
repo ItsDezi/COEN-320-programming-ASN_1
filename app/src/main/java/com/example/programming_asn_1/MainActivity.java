@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
     AppCompatButton settingsBut,count1, count2, count3, showCountBut;
+
     TextView totalCountMainPage;
     protected SharedPreferenceHelper spHelper;
     @Override
@@ -50,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 spHelper.saveCount1(spHelper.getCount1() + 1);
                 totalCountMainPage.setText("Total Count: " + spHelper.getTotalCount());
-
+                spHelper.saveHistoryArray(spHelper.getCounter1Name() + "`" + "1");//"`"separates counter number from default name
             }
         });
         count2.setOnClickListener(new View.OnClickListener() {
@@ -58,6 +59,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 spHelper.saveCount2(spHelper.getCount2() + 1);
                 totalCountMainPage.setText("Total Count: " + spHelper.getTotalCount());
+                spHelper.saveHistoryArray(spHelper.getCounter2Name() + "`" + "2");//"`"separates counter number from default name
+
             }
         });
         count3.setOnClickListener(new View.OnClickListener() {
@@ -66,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
 
                 spHelper.saveCount3(spHelper.getCount3() + 1);
                 totalCountMainPage.setText("Total Count: " + spHelper.getTotalCount());
+                spHelper.saveHistoryArray(spHelper.getCounter3Name() + "`" + "3");//"`"separates counter number from default name
             }
         });
         }

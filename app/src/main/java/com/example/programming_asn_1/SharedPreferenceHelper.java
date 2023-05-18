@@ -54,6 +54,15 @@ public class SharedPreferenceHelper {
         editor.putInt("count3Val",num );
         editor.commit();
     }
+    public void saveHistoryArray(String event)
+    {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        String storedString = sharedPreferences.getString("eventList", "");//added empty quotes in case event list is empty
+            storedString.concat(event);
+            storedString.concat("|");//to separate the entries
+        editor.putString("eventList", storedString );
+        editor.commit();
+    }
     public String getCounter1Name()
     {
         return sharedPreferences.getString("counter1Name", null);
@@ -86,6 +95,12 @@ public class SharedPreferenceHelper {
     {
         int tmp = getCount1() + getCount2() + getCount3();
         return tmp;
+    }
+    public String[] getEventHistory()
+    {
+        String compressedList = sharedPreferences.getString("eventList", "Event List Not Found");
+        String[] list = compressedList.split("|");
+        return list;
     }
 
 }

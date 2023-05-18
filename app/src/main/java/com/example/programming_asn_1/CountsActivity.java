@@ -14,12 +14,17 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 
 public class CountsActivity extends AppCompatActivity {
 
     boolean eventNameEnabled = true;
+    ListView eventList;
     TextView tv1, tv2, tv3, totalEvents;
     protected SharedPreferenceHelper spHelper;
     @Override
@@ -32,6 +37,7 @@ public class CountsActivity extends AppCompatActivity {
         tv2 = findViewById(R.id.textView2);
         tv3 = findViewById(R.id.textView3);
         totalEvents = findViewById(R.id.totalEvents);
+        eventList = findViewById(R.id.eventList);
         spHelper = new SharedPreferenceHelper(CountsActivity.this);
 
         //retrieving saved data
@@ -40,6 +46,14 @@ public class CountsActivity extends AppCompatActivity {
         tv2.setText(spHelper.getCounter2Name() + ": " + spHelper.getCount2());
         tv3.setText(spHelper.getCounter3Name() + ": " + spHelper.getCount3());
 
+        String[] eventArray = spHelper.getEventHistory();
+        ArrayList<String> eventArrayList = new ArrayList<>();
+        for(int i = 0; i < eventArray.length; i++)
+        {
+            eventArrayList.add(eventArray[i]);
+        }
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, eventArrayList);
+        eventList.setAdapter(arrayAdapter);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
