@@ -3,6 +3,7 @@ package com.example.programming_asn_1;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 
 public class SharedPreferenceHelper {
 
@@ -56,10 +57,13 @@ public class SharedPreferenceHelper {
     }
     public void saveHistoryArray(String event)
     {
-        SharedPreferences.Editor editor = sharedPreferences.edit();
         String storedString = sharedPreferences.getString("eventList", "");//added empty quotes in case event list is empty
-            storedString.concat(event);
-            storedString.concat("|");//to separate the entries
+        Log.d("Saved History Array", storedString);
+        Log.d("Event", event);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        storedString = storedString + event;
+        storedString = storedString + "/";//to separate the entries
+        Log.d("Saved History Array after Concat", storedString);
         editor.putString("eventList", storedString );
         editor.commit();
     }
@@ -99,7 +103,7 @@ public class SharedPreferenceHelper {
     public String[] getEventHistory()
     {
         String compressedList = sharedPreferences.getString("eventList", "Event List Not Found");
-        String[] list = compressedList.split("|");
+        String[] list = compressedList.split("/");
         return list;
     }
 

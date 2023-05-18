@@ -26,6 +26,8 @@ public class CountsActivity extends AppCompatActivity {
     boolean eventNameEnabled = true;
     ListView eventList;
     TextView tv1, tv2, tv3, totalEvents;
+    String[] eventArray;
+    ArrayList<String> eventArrayList = new ArrayList<>();
     protected SharedPreferenceHelper spHelper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,11 +48,18 @@ public class CountsActivity extends AppCompatActivity {
         tv2.setText(spHelper.getCounter2Name() + ": " + spHelper.getCount2());
         tv3.setText(spHelper.getCounter3Name() + ": " + spHelper.getCount3());
 
-        String[] eventArray = spHelper.getEventHistory();
-        ArrayList<String> eventArrayList = new ArrayList<>();
+        eventArray = spHelper.getEventHistory();
         for(int i = 0; i < eventArray.length; i++)
         {
-            eventArrayList.add(eventArray[i]);
+            String[] viewSelector = eventArray[i].split("`");
+            if(eventNameEnabled)
+            {
+                eventArrayList.add(viewSelector[0]);//if show counter name enabled
+            }
+            else
+            {
+                eventArrayList.add(viewSelector[1]);//if show counter name disabled
+            }
         }
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, eventArrayList);
         eventList.setAdapter(arrayAdapter);
@@ -92,6 +101,21 @@ public class CountsActivity extends AppCompatActivity {
                 tv2.setText("Counter 2" + ": " + spHelper.getCount2());
                 tv3.setText("Counter 3" + ": " + spHelper.getCount3());
             }
+            eventArrayList.clear();
+            for(int i = 0; i < eventArray.length; i++)
+            {
+                String[] viewSelector = eventArray[i].split("`");
+                if(eventNameEnabled)
+                {
+                    eventArrayList.add(viewSelector[0]);//if show counter name enabled
+                }
+                else
+                {
+                    eventArrayList.add(viewSelector[1]);//if show counter name disabled
+                }
+            }
+            ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, eventArrayList);
+            eventList.setAdapter(arrayAdapter);
         }
         return super.onOptionsItemSelected(item);
     }
