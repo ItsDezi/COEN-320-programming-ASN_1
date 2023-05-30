@@ -51,7 +51,7 @@ public class CountsActivity extends AppCompatActivity {
         eventArray = spHelper.getEventHistory();
         for(int i = 0; i < eventArray.length; i++)
         {
-            String[] viewSelector = eventArray[i].split("`");
+            String[] viewSelector = eventArray[i].split("`");//` used to separate counter name from number
             if(eventNameEnabled)
             {
                 eventArrayList.add(viewSelector[0]);//if show counter name enabled

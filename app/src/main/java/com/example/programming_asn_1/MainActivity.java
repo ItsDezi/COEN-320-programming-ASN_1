@@ -22,6 +22,21 @@ public class MainActivity extends AppCompatActivity {
         count2 = findViewById(R.id.event2Button);
         count3 = findViewById(R.id.event3Button);
         totalCountMainPage = findViewById(R.id.mainPageTotalCount);
+        if(spHelper.getCounter1Name() == null)
+        {
+            Intent intent = new Intent(MainActivity.this,SettingsActivity.class);
+            startActivity(intent);
+        }
+        else if (spHelper.getCounter2Name() == null)
+        {
+            Intent intent = new Intent(MainActivity.this,SettingsActivity.class);
+            startActivity(intent);
+        }
+        else if (spHelper.getCounter3Name() == null)
+        {
+            Intent intent = new Intent(MainActivity.this,SettingsActivity.class);
+            startActivity(intent);
+        }
 
         count1.setText(spHelper.getCounter1Name());
         count2.setText(spHelper.getCounter2Name());

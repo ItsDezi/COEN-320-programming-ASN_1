@@ -11,6 +11,10 @@ public class SharedPreferenceHelper {
     public SharedPreferenceHelper(Context context)
     {
         sharedPreferences = context.getSharedPreferences("sharedPreference", Context.MODE_PRIVATE );
+        /*SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.clear();
+        editor.commit();*/
+
     }
 
     public void saveCounter1Name(String name)
